@@ -37,7 +37,8 @@ public class OutgoingMessageDAO {
         cn = Conexion.getInstancia().miConexion();
         Statement st = null;             
         String sqlString="delete from usrsms.outgoing_message "
-                + "where date_trunc('day', fecha_envio) = CURRENT_DATE - 2";
+                + "where date_trunc('day', fecha_envio) <= CURRENT_DATE - 2"
+                + " and UPPER(tipo) <> 'CMACSULLANA'";
         
         try{                                    
             st = cn.createStatement();
