@@ -9,6 +9,7 @@ import entity.IncomingMessage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -29,7 +30,7 @@ public class IncomingMessageDAO {
         return instance;
     }
     
-    public ArrayList<IncomingMessage> getIncomingMessage(){
+    public ArrayList<IncomingMessage> getIncomingMessage() throws SQLException{
         cn = Conexion.getInstancia().miConexion();
         ArrayList list = new ArrayList<IncomingMessage>();
         PreparedStatement ps = null;
