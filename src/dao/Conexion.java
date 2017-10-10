@@ -69,4 +69,18 @@ public class Conexion {
         
         return cn;
     }
+    
+    public Connection miConexion2(){
+        Connection cn=null;
+        getCadenaConex();
+        try{
+           objDriver=(Driver)Class.forName("org.postgresql.Driver").newInstance();
+           DriverManager.registerDriver(objDriver);
+           cn=DriverManager.getConnection("jdbc:postgresql://db.mowa.com.pe/SIGDB",user,password);
+        }catch(Exception ex){
+            logger.info((Object)("Error de Conexion Remota:  " + ex.getMessage()));
+        }
+        
+        return cn;
+    }
 }

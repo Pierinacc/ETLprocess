@@ -5,6 +5,7 @@
  */
 package etlprocess;
 
+import dao.IncomingMessageDAO;
 import dao.OutgoingMessageDAO;
 import java.sql.SQLException;
 /**
@@ -20,6 +21,7 @@ public class ETLprocess {
         // TODO code application logic here
         
         OutgoingMessageDAO.getInstance().clean();
+        IncomingMessageDAO.getInstance().getIncomingMessage();
     }
     
 }
