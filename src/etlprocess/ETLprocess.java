@@ -22,6 +22,7 @@ public class ETLprocess {
         
         OutgoingMessageDAO.getInstance().clean();
         IncomingMessageDAO.getInstance().getIncomingMessage();
+        OutgoingMessageDAO.getInstance().executeVacuum();
     }
     
 }
