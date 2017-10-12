@@ -6,8 +6,8 @@
 package dao;
 
 import org.apache.log4j.Logger;
-import entity.OutgoingMessage;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -57,5 +57,25 @@ public class OutgoingMessageDAO {
             }            
         }        
         return eliminado;
+    }
+    
+    public void executeVacuum() throws SQLException {
+        cn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        String query = "VACUUM FULL usrsms.outgoing_message ";
+        
+        try {
+            ps = cn.prepareStatement(query);
+            ps.executeQuery();
+            logger.info((Object)"Ejecuto Vaccum:");
+        } catch (SQLException ex) {
+            logger.info((Object)"ERROR VACUUM: "+ ex.getMessage());
+        } finally {
+            cn.close();
+            if (ps != null) {
+                ps.close();
+            }
+        }
+        
     }
 }
