@@ -36,7 +36,7 @@ public class IncomingMessageDAO {
         cn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try{
-            String query = "select * from usrsms.migrate_incoming_message";
+            String query = "select * from usrsms.migrate_incoming_message where received_date = CURRENT_DATE - 1";
             
             ps = cn.prepareStatement(query);
             rs = ps.executeQuery();
