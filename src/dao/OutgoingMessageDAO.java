@@ -59,14 +59,52 @@ public class OutgoingMessageDAO {
         return eliminado;
     }
     
-    public void executeVacuum() throws SQLException {
+    public void executeVacuumOutgoingMessage() throws SQLException {
         cn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
-        String query = "VACUUM FULL usrsms.outgoing_message ";
+        String query = "VACUUM FULL usrsms.outgoing_message";
         
         try {
             ps = cn.prepareStatement(query);
-            ps.executeQuery();
+            ps.executeUpdate();
+            logger.info((Object)"Ejecuto Vaccum:");
+        } catch (SQLException ex) {
+            logger.info((Object)"ERROR VACUUM: "+ ex.getMessage());
+        } finally {
+            cn.close();
+            if (ps != null) {
+                ps.close();
+            }
+        }
+        
+    }
+    public void executeVacuumMessages() throws SQLException {
+        cn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        String query = "VACUUM FULL usrsms.messages";
+        
+        try {
+            ps = cn.prepareStatement(query);
+            ps.executeUpdate();
+            logger.info((Object)"Ejecuto Vaccum:");
+        } catch (SQLException ex) {
+            logger.info((Object)"ERROR VACUUM: "+ ex.getMessage());
+        } finally {
+            cn.close();
+            if (ps != null) {
+                ps.close();
+            }
+        }
+        
+    }
+    public void executeVacuumIncomingMessage() throws SQLException {
+        cn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        String query = "VACUUM FULL usrsms.incoming_message";
+        
+        try {
+            ps = cn.prepareStatement(query);
+            ps.executeUpdate();
             logger.info((Object)"Ejecuto Vaccum:");
         } catch (SQLException ex) {
             logger.info((Object)"ERROR VACUUM: "+ ex.getMessage());

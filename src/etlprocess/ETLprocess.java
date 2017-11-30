@@ -20,9 +20,11 @@ public class ETLprocess {
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here
         
-        //OutgoingMessageDAO.getInstance().clean();
+        OutgoingMessageDAO.getInstance().clean();
         IncomingMessageDAO.getInstance().getIncomingMessage();
-        OutgoingMessageDAO.getInstance().executeVacuum();
+        OutgoingMessageDAO.getInstance().executeVacuumOutgoingMessage();
+        OutgoingMessageDAO.getInstance().executeVacuumIncomingMessage();
+        OutgoingMessageDAO.getInstance().executeVacuumMessages();
     }
     
 }
